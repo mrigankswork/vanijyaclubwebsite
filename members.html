@@ -5,78 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members - Vanijya Club</title>
     <style>
-        /* SHARED CSS */
+        /* THEME VARIABLES */
         :root { 
             --bg-black: #060607;
-            --purple: #351173;
-            --cyan: #50C4D0;
-            --dark-blue: #02358D;
+            --dark-purple: #351173; /* Your requested color */
+            --light-purple: #b388ff; /* Lighter purple for text readability */
             --text-white: #ffffff;
         }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-black); color: var(--text-white); }
         
-        nav { background: #000; padding: 1rem; text-align: center; border-bottom: 1px solid var(--purple); }
-        nav a { color: #ccc; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition:0.3s;}
-        nav a:hover, nav a.active { color: var(--cyan); }
+        nav { background: #000; padding: 1rem; text-align: center; border-bottom: 1px solid #222; }
+        nav a { color: #888; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition:0.3s;}
+        nav a:hover, nav a.active { color: var(--light-purple); text-shadow: 0 0 8px var(--dark-purple); }
         
-        /* MEMBERS GRID */
         section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         
+        /* HEADERS */
         h2 { 
             text-align: center; 
-            color: #444; /* Dark gray for "fade" effect or use color */
-            color: var(--cyan);
-            border-bottom: 2px solid var(--purple); 
+            color: var(--light-purple);
+            border-bottom: 2px solid var(--dark-purple); 
             padding-bottom: 10px; 
-            margin-bottom: 30px; 
+            margin-bottom: 40px; 
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-weight: 600;
         }
         
+        /* GRID SETUP */
         .members-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
             gap: 25px; 
             text-align: center; 
         }
         
+        /* CARD STYLING - DARK PURPLE THEME */
         .member-card { 
-            background: #fff; /* Fallback */
             background: #0b0b10;
-            padding: 25px 15px; 
-            border-radius: 8px; 
-            border: 1px solid #222;
-            border-top: 4px solid var(--cyan); 
-            transition: transform 0.3s, box-shadow 0.3s; 
+            padding: 30px 20px; 
+            border-radius: 12px; 
+            border: 1px solid #1a1a1a;
+            /* The specific Purple border request */
+            border-top: 4px solid var(--dark-purple); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; 
         }
         
         .member-card:hover { 
             transform: translateY(-5px); 
-            box-shadow: 0 5px 15px rgba(80, 196, 208, 0.2);
-            border-color: var(--purple);
+            /* Glow effect using the purple */
+            box-shadow: 0 0 20px rgba(53, 17, 115, 0.4);
+            border-color: var(--dark-purple);
         }
         
         .member-name { 
             font-weight: bold; 
-            font-size: 1.1rem; 
+            font-size: 1.2rem; 
             color: #fff;
+            margin-bottom: 8px;
         }
         
         .member-role { 
-            color: var(--cyan); 
-            font-size: 0.9rem; 
-            margin-top: 8px; 
+            color: var(--dark-purple); /* Using the strict dark purple code */
+            /* Added a slight text-shadow so dark purple is visible on black */
+            text-shadow: 0 0 1px rgba(179, 136, 255, 0.3);
+            font-size: 0.85rem; 
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
+            letter-spacing: 1.5px;
+            font-weight: 700;
         }
         
-        /* Special Styling for Seniors if needed, or keeping uniform */
+        /* Styling for Senior Cards (Darker variant) */
         .senior-card { 
-            border-top-color: var(--dark-blue); 
+            background: #08080a;
+            border-top-color: #555; 
         }
         
-        footer { text-align: center; padding: 40px; background: #000; color: #666; margin-top: 50px; border-top: 1px solid var(--purple);}
+        footer { text-align: center; padding: 40px; background: #000; color: #666; margin-top: 50px; border-top: 1px solid #222;}
     </style>
 </head>
 <body>
@@ -92,7 +98,7 @@
         <div class="members-grid" id="members-root"></div>
     </section>
 
-    <section style="margin-top: 50px; opacity: 0.7;">
+    <section style="margin-top: 50px; opacity: 0.8;">
         <h2>The Seniors</h2>
         <div class="members-grid" id="seniors-root"></div>
     </section>
@@ -118,17 +124,17 @@
             { name: "Naitik Mittal", role: "Junior Core" }
         ];
         
-        // Placeholder for Seniors Data (You can populate this)
-        const seniorsDatabase = []; 
-        
         const mRoot = document.getElementById('members-root');
         membersDatabase.forEach(m => mRoot.innerHTML += `<div class="member-card"><div class="member-name">${m.name}</div><div class="member-role">${m.role}</div></div>`);
         
+        // Placeholder for Seniors
         const sRoot = document.getElementById('seniors-root');
+        // Example senior data
+        const seniorsDatabase = []; 
         if(seniorsDatabase.length > 0) {
              seniorsDatabase.forEach(s => sRoot.innerHTML += `<div class="member-card senior-card"><div class="member-name">${s.name}</div><div class="member-role">${s.role}</div></div>`);
         } else {
-            sRoot.innerHTML = "<p style='grid-column: 1/-1; color: #555;'>Data coming soon...</p>";
+            sRoot.innerHTML = "<p style='grid-column: 1/-1; color: #444;'>Class of 2024 Archives</p>";
         }
     </script>
 </body>
