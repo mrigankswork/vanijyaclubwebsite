@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members - DPS Noida MUN Club</title>
+    <title>Members - DPS Noid Vanijya Club</title>
     <style>
         /* SHARED CSS */
-        :root { --dps-green: #006837; --bg-light: #f9f9f9; }
+        :root { --dps-green: #006837; --bg-light: #060607; }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-light); color: #333; }
         nav { background: #222; padding: 1rem; text-align: center; }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -20,14 +20,14 @@
         .member-card:hover { transform: translateY(-5px); }
         .member-name { font-weight: bold; font-size: 1.1rem; }
         .member-role { color: #777; font-size: 0.9rem; margin-top: 5px; }
-        .senior-card { border-top-color: #555; background: #f4f4f4; }
+        .senior-card { border-top-color: #555; background: #060607; }
         footer { text-align: center; padding: 40px; background: #222; color: #777; margin-top: 50px; }
     </style>
 </head>
 <body>
     <nav>
         <a href="index.html">Home</a>
-        <a href="members.html" class="active">Secretariat</a>
+        <a href="members.html" class="active">Members</a>
         <a href="victories.html">Victories</a>
         <a href="gallery.html">Gallery</a>
     </nav>
@@ -46,46 +46,23 @@
 
     <script>
         const membersDatabase = [
-            { name: "Atharv Prasad", role: "President" },
-            { name: "Adya S. Kumar", role: "Secretary" },
-            { name: "Jahnvi Aggarwal", role: "Vice President" },
-            { name: "Riddhima Vig", role: "Joint Secretary" },
-            { name: "Mrigank Bhargava", role: "Senior Core" },
-            { name: "Yash Raj Singh", role: "Senior Core" },
-            { name: "Gautam Narang", role: "Junior Core" },
-            { name: "Mahie Tripathi", role: "Junior Core" },
-            { name: "Avni Khandelwal", role: "Junior Core" },
-            { name: "Saanvi Jaiswal", role: "Junior Core" },
-            { name: "Paavika Singh", role: "Junior Core" },
-            { name: "Shloke Kalra", role: "Junior Core" },
-            { name: "Sargun Jindal", role: "Junior Core" },
-            { name: "Harshit Bhasin", role: "Junior Core" }
+            { name: "Aditya Khari", role: "President" },
+            { name: "Aria Singh", role: "Secretary" },
+            { name: "Kanak Gupta", role: "Secretary",},
+            { name: "Md Aakif Akhtar", role: "Vice President" },
+            { name: "Arni Jugran", role: "Joint Secretary" },
+            { name: "Shloke Kalra", role: "Senior Core" },
+            { name: "Sonakshi Raghuvanshi", role: "Senior Core" },
+            { name: "Vanishi Jain", role: "Senior Core" },
+            { name: "Shruti Pandey", role: "Senior Core" },
+            { name: "Hriteesha Sharma", role: "Senior Core" },
+            { name: "Animesh Gupta", role: "Senior Core" },
+            { name: "Shivanshi Kapoor", role: "Senior Core" },
+            { name: "Akshat Mishra", role: "Junior Core" },
+            { name: "Aarav Uniyal", role: "Junior Core" },
+            { name: "Naitik Mittal", role: "Junior Core" }
         ];
-
-        const seniorsDatabase = [
-            { name: "Divij Sharma", role: "Prezident MUN Club, C/O 2025" },
-            { name: "Krisha Sharma", role: "Secretary MUN Club, C/O 2025" },
-            { name: "Aaditya Pande", role: "Head Boy, C/O 2025" },
-            { name: "Nimrah Ali", role: "Senior, C/O 2025" },
-            { name: "Siya Aggarwal", role: "Senior, C/O 2025" },
-            { name: "Akshaddha Singh", role: "Senior, C/O 2025" },
-            { name: "Angela Arora", role: "Head Girl, C/O 2024" },
-            { name: "Kriti Chibber", role: "Prezident MUN Club, C/O 2024" },
-            { name: "Izhaan Ashfaq", role: "Secretary MUN Club, C/O 2024" },
-            { name: "Sanidhya Gurudev", role: "Senior, C/O 2024" },
-            { name: "Arhan Akmal", role: "Head Boy, C/O 2023" },
-            { name: "Suhana Sharma", role: "Senior, C/O 2023" },
-            { name: "Soha Khan", role: "Senior, C/O 2023"},
-            { name: "Asher Kaul", role: "Prezident, C/O 2022"},
-            { name: "Advait Mishra", role: "Head Boy, C/O 2022"},
-            { name: "Drishtant Chakraberty", role: "Head Boy, C/O 2017"},
-            { name: "Rithupar Pathy", role: "Senior, C/O 2018"},
-            { name: "Nimish Batra", role: "Senior, C/O 2018"},
-            { name: "Aanya Wig", role: "Senior, C/O 2018"},
-            { name: "Karn Kasturi Sharma", role: "Senior, C/O 2018"},
-            { name: "Pranava Dhar", role: "Head Boy, C/O 2020"}
-        ];
-
+        
         const mRoot = document.getElementById('members-root');
         membersDatabase.forEach(m => mRoot.innerHTML += `<div class="member-card"><div class="member-name">${m.name}</div><div class="member-role">${m.role}</div></div>`);
         const sRoot = document.getElementById('seniors-root');
