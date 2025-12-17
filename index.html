@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - DPS Noida MUN Club</title>
+    <style>
+        /* SHARED CSS */
+        :root { --dps-green: #006837; --accent: #c0392b; --bg-light: #f9f9f9; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-light); color: #333; }
+        nav { background: #222; padding: 1rem; text-align: center; }
+        nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        nav a:hover, nav a.active { color: #4CAF50; }
+        
+        header { background: #fff; padding: 40px 20px; text-align: center; border-bottom: 5px solid var(--dps-green); }
+        .logo-placeholder { width: 100px; height: 100px; background: #eee; border-radius: 50%; display: inline-block; object-fit: cover; margin-bottom: 10px; }
+        h1 { color: var(--dps-green); margin: 5px 0; font-family: 'Georgia', serif; font-size: 2.2rem; }
+        
+        section { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+        h2 { color: #444; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; font-weight: 300; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* --- CAROUSEL STYLES (NEW) --- */
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            height: 400px; /* Adjust height as needed */
+            margin: 20px auto 40px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: #000;
+        }
+        .carousel-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            object-fit: cover;
+        }
+        .carousel-slide.active { opacity: 1; }
+
+        /* --- ABOUT SECTION STYLES (NEW) --- */
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* NEWS BOX STYLE */
+        .news-box { background: #fff; border-left: 5px solid var(--accent); padding: 20px; margin-bottom: 20px; text-align: left; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .news-date { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; }
+        .news-content { font-size: 1.1rem; margin-top: 5px; }
+
+        /* ARCHIVE BUTTONS */
+        .archive-card { background: #fff; padding: 15px; border-radius: 5px; margin-bottom: 10px; border: 1px solid #ddd; }
+        .archive-link { color: var(--dps-green); text-decoration: none; font-weight: bold; }
+        
+        footer { text-align: center; padding: 40px; background: #222; color: #777; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="members.html">Secretariat</a>
+        <a href="victories.html">Victories</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
+
+    <header>
+        <img src="MUN_Logo.jpeg" alt="DPS Logo" class="logo-placeholder">
+        <h1>MUN Club of DPS Noida</h1>
+        <p style="color: #666; font-style: italic;">May the Force be with Us</p>
+    </header>
+
+    <div class="carousel-container">
+        <img src="ZESTE25_MUN.jpeg" class="carousel-slide active" alt="Slide 1">
+        <img src="Mayoor_MUN.jpeg" class="carousel-slide" alt="Slide 2">
+        <img src="IMG_1726.jpeg" class="carousel-slide" alt="Slide 3">
+    </div>
+
+    <section>
+        <h2>About The Club</h2>
+        <div class="about-text">
+            <p>
+                Welcome to the official Model United Nations Club of Delhi Public School, Noida. 
+                Since its establishment in 2004, the club has produced some of the most outspoken, eloquent,
+                and articulate MUNers and has succesfully garnered over 580 Individual Achivements of its club
+                members and over a 100 school delegation awards. We hope to strive for the best in every domain of 
+                this activity.
+            </p>
+            <p style="margin-top: 15px;">
+                "Service Before Self" guides our delegation as we compete—and win—at the most prestigious 
+                conferences across the nation.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Latest Updates</h2>
+        <div id="news-root"></div>
+    </section>
+
+    <section style="background: #eaeaea; max-width: 100%;">
+        <h2>Archives & Resources</h2>
+        <div id="archives-root"></div>
+    </section>
+
+    <footer>&copy; 2025 DPS Noida MUN Club.</footer>
+
+    <script>
+        // --- CAROUSEL LOGIC ---
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+
+        function rotateSlide() {
+            // Remove active class from current
+            slides[currentSlide].classList.remove('active');
+            // Move to next slide (loop back to 0 if at end)
+            currentSlide = (currentSlide + 1) % slides.length;
+            // Add active class to new slide
+            slides[currentSlide].classList.add('active');
+        }
+        // Change slide every 3000ms (3 seconds)
+        setInterval(rotateSlide, 3000);
+
+
+        // --- DATABASE LOGIC (News & Archives) ---
+        const newsDatabase = [
+            { date: "Aug 15, 2025", text: "Registrations are now open for the Summer Intra-School Mock MUN Conference!" },
+            { date: "July 20, 2025", text: "DPS Noida wins runners-up School Delegation at RIS Zeste MV MUN 2025!" },
+            { date: "May 19, 2025", text: "DPS Noida wins Best School Delegation at Mayoor MUN 2025" }
+        ];
+
+        const archivesDatabase = [
+            { year: "2010", title: "DPSN MUN Club Older", url: "https://dpsnmun.weebly.com/members.html" },
+            { year: "2015", title: "DPSNMUN 2015 Site", url: "https://mrigankswork.github.io/dpsnmun.github.io/details.html" }
+        ];
+
+        // RENDER
+        const newsRoot = document.getElementById('news-root');
+        newsDatabase.forEach(item => {
+            newsRoot.innerHTML += `<div class="news-box"><div class="news-date">${item.date}</div><div class="news-content">${item.text}</div></div>`;
+        });
+        const archivesRoot = document.getElementById('archives-root');
+        archivesDatabase.forEach(item => {
+            archivesRoot.innerHTML += `<div class="archive-card"><strong>${item.year}:</strong> <a href="${item.url}" class="archive-link">${item.title}</a></div>`;
+        });
+    </script>
+</body>
+</html>
