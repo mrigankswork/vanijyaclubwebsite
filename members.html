@@ -8,19 +8,20 @@
         /* THEME VARIABLES */
         :root { 
             --bg-black: #060607;
-            --dark-purple: #351173; /* Your requested color */
-            --light-purple: #b388ff; /* Lighter purple for text readability */
+            --dark-purple: #351173; 
+            --light-purple: #b388ff; /* For Headers */
+            --neon-pink: #FF55BB;    /* FOR ROLES */
             --text-white: #ffffff;
         }
         body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-black); color: var(--text-white); }
         
-        nav { background: #000; padding: 1rem; text-align: center; border-bottom: 1px solid #222; }
+        nav { background: #000; padding: 1rem; text-align: center; border-bottom: 1px solid #1a1a1a; }
         nav a { color: #888; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition:0.3s;}
-        nav a:hover, nav a.active { color: var(--light-purple); text-shadow: 0 0 8px var(--dark-purple); }
+        nav a:hover, nav a.active { color: var(--neon-pink); text-shadow: 0 0 8px var(--dark-purple); }
         
         section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
         
-        /* HEADERS */
+        /* HEADERS - Keep Purple */
         h2 { 
             text-align: center; 
             color: var(--light-purple);
@@ -32,7 +33,6 @@
             font-weight: 600;
         }
         
-        /* GRID SETUP */
         .members-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
@@ -40,23 +40,20 @@
             text-align: center; 
         }
         
-        /* CARD STYLING - DARK PURPLE THEME */
         .member-card { 
             background: #0b0b10;
             padding: 30px 20px; 
             border-radius: 12px; 
             border: 1px solid #1a1a1a;
-            /* The specific Purple border request */
             border-top: 4px solid var(--dark-purple); 
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; 
+            transition: transform 0.3s, box-shadow 0.3s; 
         }
         
         .member-card:hover { 
             transform: translateY(-5px); 
-            /* Glow effect using the purple */
             box-shadow: 0 0 20px rgba(53, 17, 115, 0.4);
-            border-color: var(--dark-purple);
+            border-color: var(--neon-pink); /* Hover turns border pink too */
         }
         
         .member-name { 
@@ -66,20 +63,19 @@
             margin-bottom: 8px;
         }
         
+        /* --- ROLE IS NOW PINK AND VISIBLE --- */
         .member-role { 
-            color: var(--dark-purple); /* Using the strict dark purple code */
-            /* Added a slight text-shadow so dark purple is visible on black */
-            text-shadow: 0 0 1px rgba(179, 136, 255, 0.3);
-            font-size: 0.85rem; 
+            color: var(--neon-pink); 
+            text-shadow: 0 0 5px rgba(255, 85, 187, 0.3); /* Subtle glow */
+            font-size: 0.9rem; 
             text-transform: uppercase;
             letter-spacing: 1.5px;
             font-weight: 700;
         }
         
-        /* Styling for Senior Cards (Darker variant) */
         .senior-card { 
             background: #08080a;
-            border-top-color: #555; 
+            border-top-color: #444; 
         }
         
         footer { text-align: center; padding: 40px; background: #000; color: #666; margin-top: 50px; border-top: 1px solid #222;}
@@ -127,9 +123,7 @@
         const mRoot = document.getElementById('members-root');
         membersDatabase.forEach(m => mRoot.innerHTML += `<div class="member-card"><div class="member-name">${m.name}</div><div class="member-role">${m.role}</div></div>`);
         
-        // Placeholder for Seniors
         const sRoot = document.getElementById('seniors-root');
-        // Example senior data
         const seniorsDatabase = []; 
         if(seniorsDatabase.length > 0) {
              seniorsDatabase.forEach(s => sRoot.innerHTML += `<div class="member-card senior-card"><div class="member-name">${s.name}</div><div class="member-role">${s.role}</div></div>`);
