@@ -3,25 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members - DPS Noid Vanijya Club</title>
+    <title>Members - Vanijya Club</title>
     <style>
         /* SHARED CSS */
-        :root { --dps-green: #006837; --bg-light: #060607; }
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-light); color: #333; }
-        nav { background: #222; padding: 1rem; text-align: center; }
-        nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-        nav a:hover, nav a.active { color: #4CAF50; }
+        :root { 
+            --bg-black: #060607;
+            --purple: #351173;
+            --cyan: #50C4D0;
+            --dark-blue: #02358D;
+            --text-white: #ffffff;
+        }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-black); color: var(--text-white); }
+        
+        nav { background: #000; padding: 1rem; text-align: center; border-bottom: 1px solid var(--purple); }
+        nav a { color: #ccc; text-decoration: none; margin: 0 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition:0.3s;}
+        nav a:hover, nav a.active { color: var(--cyan); }
         
         /* MEMBERS GRID */
         section { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
-        h2 { text-align: center; color: #444; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 30px; }
-        .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 30px; text-align: center; }
-        .member-card { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-top: 4px solid var(--dps-green); transition: transform 0.2s; }
-        .member-card:hover { transform: translateY(-5px); }
-        .member-name { font-weight: bold; font-size: 1.1rem; }
-        .member-role { color: #777; font-size: 0.9rem; margin-top: 5px; }
-        .senior-card { border-top-color: #555; background: #060607; }
-        footer { text-align: center; padding: 40px; background: #222; color: #777; margin-top: 50px; }
+        
+        h2 { 
+            text-align: center; 
+            color: #444; /* Dark gray for "fade" effect or use color */
+            color: var(--cyan);
+            border-bottom: 2px solid var(--purple); 
+            padding-bottom: 10px; 
+            margin-bottom: 30px; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .members-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+            gap: 25px; 
+            text-align: center; 
+        }
+        
+        .member-card { 
+            background: #fff; /* Fallback */
+            background: #0b0b10;
+            padding: 25px 15px; 
+            border-radius: 8px; 
+            border: 1px solid #222;
+            border-top: 4px solid var(--cyan); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        
+        .member-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(80, 196, 208, 0.2);
+            border-color: var(--purple);
+        }
+        
+        .member-name { 
+            font-weight: bold; 
+            font-size: 1.1rem; 
+            color: #fff;
+        }
+        
+        .member-role { 
+            color: var(--cyan); 
+            font-size: 0.9rem; 
+            margin-top: 8px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        /* Special Styling for Seniors if needed, or keeping uniform */
+        .senior-card { 
+            border-top-color: var(--dark-blue); 
+        }
+        
+        footer { text-align: center; padding: 40px; background: #000; color: #666; margin-top: 50px; border-top: 1px solid var(--purple);}
     </style>
 </head>
 <body>
@@ -37,18 +92,18 @@
         <div class="members-grid" id="members-root"></div>
     </section>
 
-    <section style="margin-top: 50px;">
+    <section style="margin-top: 50px; opacity: 0.7;">
         <h2>The Seniors</h2>
         <div class="members-grid" id="seniors-root"></div>
     </section>
 
-    <footer>&copy; 2025 DPS Noida MUN Club.</footer>
+    <footer>&copy; 2025 Vanijya Club of DPS Noida.</footer>
 
     <script>
         const membersDatabase = [
             { name: "Aditya Khari", role: "President" },
             { name: "Aria Singh", role: "Secretary" },
-            { name: "Kanak Gupta", role: "Secretary",},
+            { name: "Kanak Gupta", role: "Secretary"},
             { name: "Md Aakif Akhtar", role: "Vice President" },
             { name: "Arni Jugran", role: "Joint Secretary" },
             { name: "Shloke Kalra", role: "Senior Core" },
@@ -63,10 +118,18 @@
             { name: "Naitik Mittal", role: "Junior Core" }
         ];
         
+        // Placeholder for Seniors Data (You can populate this)
+        const seniorsDatabase = []; 
+        
         const mRoot = document.getElementById('members-root');
         membersDatabase.forEach(m => mRoot.innerHTML += `<div class="member-card"><div class="member-name">${m.name}</div><div class="member-role">${m.role}</div></div>`);
+        
         const sRoot = document.getElementById('seniors-root');
-        seniorsDatabase.forEach(s => sRoot.innerHTML += `<div class="member-card senior-card"><div class="member-name">${s.name}</div><div class="member-role">${s.role}</div></div>`);
+        if(seniorsDatabase.length > 0) {
+             seniorsDatabase.forEach(s => sRoot.innerHTML += `<div class="member-card senior-card"><div class="member-name">${s.name}</div><div class="member-role">${s.role}</div></div>`);
+        } else {
+            sRoot.innerHTML = "<p style='grid-column: 1/-1; color: #555;'>Data coming soon...</p>";
+        }
     </script>
 </body>
 </html>
